@@ -2,7 +2,9 @@
   "name": "self-destruct",
   "version": "0.1.0",
   "main": "./bin/server.js",
-  "scripts": {},
+  "scripts": {
+    "start": "node ./bin/server.js"
+  },
   "author": "Joe Martella",
   "license": "MIT",
   "devDependencies": {
