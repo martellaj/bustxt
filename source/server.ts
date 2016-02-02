@@ -1,5 +1,3 @@
-#!/usr/bin/env node
-
 import http = require('http');
 
 let port = process.env.PORT || 3000;
