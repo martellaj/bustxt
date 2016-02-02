@@ -1,4 +1,4 @@
-# TypeScript Node Seed
+# TypeScript Node seed
 > This is a simple seed (which may grow into a sapling) that serves as the roots for a Node application written in TypeScript that can be deployed to Azure.
 
 ## Getting started
