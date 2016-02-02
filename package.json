@@ -2,7 +2,9 @@
   "name": "typescript-node-seed",
   "version": "0.1.0",
   "main": "server.js",
-  "scripts": {},
+  "scripts": {
+    "postinstall": "typings install"
+  },
   "author": "Joe Martella",
   "license": "MIT",
   "devDependencies": {
