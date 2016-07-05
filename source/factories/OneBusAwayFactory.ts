@@ -85,7 +85,7 @@ function getTripInformation() {
     if (_body.code === 200) {
       for (let tripIterator = 0; tripIterator < _body.data.entry.arrivalsAndDepartures.length; tripIterator++) {
         let trip: Trip = _body.data.entry.arrivalsAndDepartures[tripIterator];
-        if (trip.routeId === ROUTE_545_ID) {
+        if (trip.routeId === ROUTE_232_ID) {
           deferred.resolve(trip);
         }
       }
