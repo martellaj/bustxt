@@ -1,7 +1,7 @@
 {
-  "name": "typescript-node-seed",
-  "version": "0.1.0",
-  "main": "bin/server.js",
+  "name": "bustxt",
+  "version": "0.0.0",
+  "main": "bin/BusTxt.js",
   "scripts": {},
   "author": "Joe Martella",
   "license": "MIT",

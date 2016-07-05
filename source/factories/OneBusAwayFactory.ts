@@ -1,7 +1,7 @@
 import request = require('request');
 import Q = require('q');
-import Config = require('./config');
-import { IArrivalTimeResponse } from './models/IArrivalTimeResponse';
+import Config = require('../config');
+import { IArrivalTimeResponse } from '../models/IArrivalTimeResponse';
 
 const ROUTE_232_ID = `1_100124`;
 const ROUTE_545_ID = `40_100236`;
