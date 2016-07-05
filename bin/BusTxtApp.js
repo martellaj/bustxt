@@ -1,12 +1,11 @@
 var http = require('http');
 var scheduler = require('node-schedule');
 var OneBusAwayFactory = require('./OneBusAwayFactory');
-console.log('>>> App is running.');
+console.log('>>> App is running...');
 OneBusAwayFactory.getTripETA().then(function (response) {
     var _response = response;
-    console.log('>>> Call works.');
 });
-var _rule = new scheduler.RecurrenceRule(null, null, null, null, null, 14, null);
+var _rule = new scheduler.RecurrenceRule(null, null, null, null, null, 28, null);
 scheduler.scheduleJob(_rule, function () {
     OneBusAwayFactory.getTripETA().then(function (response) {
         var _response = response;
@@ -16,7 +15,12 @@ scheduler.scheduleJob(_rule, function () {
 });
 var rule = new scheduler.RecurrenceRule(null, null, null, null, 14, 10, null);
 scheduler.scheduleJob(rule, function () {
-    console.log('>>> Beginning notification task...');
+    console.log('>>> Getting bus schedule...');
+    OneBusAwayFactory.getTripETA().then(function (response) {
+        var _response = response;
+        console.log('>>> Milliseconds to arrival: ' + _response.msToArrival);
+        console.log('>>> Predicted time: ' + _response.isPredicted);
+    });
 });
 var port = process.env.PORT || 3000;
 http.createServer(function (req, res) {
@@ -24,4 +28,4 @@ http.createServer(function (req, res) {
     res.writeHead(200, { 'Content-Type': 'text/plain' });
     res.end('Hello, world!\n');
 }).listen(port);
-//# sourceMappingURL=server.js.map
+//# sourceMappingURL=BusTxtApp.js.map
