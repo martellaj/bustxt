@@ -4,8 +4,8 @@ var Config = require('../config');
 var ROUTE_232_ID = "1_100124";
 var ROUTE_545_ID = "40_100236";
 var STOP_NUMBER = "1_71954";
-var GET_TRIPS_URL = "http://api.pugetsound.onebusaway.org/api/where/arrivals-and-departures-for-stop/" + STOP_NUMBER + ".json?key=" + Config.API_KEY;
-var GET_ETA_URL = "http://api.pugetsound.onebusaway.org/api/where/arrival-and-departure-for-stop/" + STOP_NUMBER + ".json?key=" + Config.API_KEY;
+var GET_TRIPS_URL = "http://api.pugetsound.onebusaway.org/api/where/arrivals-and-departures-for-stop/" + STOP_NUMBER + ".json?key=" + Config.OBA_API_KEY;
+var GET_ETA_URL = "http://api.pugetsound.onebusaway.org/api/where/arrival-and-departure-for-stop/" + STOP_NUMBER + ".json?key=" + Config.OBA_API_KEY;
 /**
  * Gets trip ETA (in milliseconds) and whether or not said time is predicted.
  * @returns {IArrivalTimeResponse} Trip ETA information.

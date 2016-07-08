@@ -6,8 +6,8 @@ import { IArrivalTimeResponse } from '../models/IArrivalTimeResponse';
 const ROUTE_232_ID = `1_100124`;
 const ROUTE_545_ID = `40_100236`;
 const STOP_NUMBER = `1_71954`;
-const GET_TRIPS_URL = `http://api.pugetsound.onebusaway.org/api/where/arrivals-and-departures-for-stop/${STOP_NUMBER}.json?key=${Config.API_KEY}`;
-const GET_ETA_URL = `http://api.pugetsound.onebusaway.org/api/where/arrival-and-departure-for-stop/${STOP_NUMBER}.json?key=${Config.API_KEY}`;
+const GET_TRIPS_URL = `http://api.pugetsound.onebusaway.org/api/where/arrivals-and-departures-for-stop/${STOP_NUMBER}.json?key=${Config.OBA_API_KEY}`;
+const GET_ETA_URL = `http://api.pugetsound.onebusaway.org/api/where/arrival-and-departure-for-stop/${STOP_NUMBER}.json?key=${Config.OBA_API_KEY}`;
 
 interface Trip {
   tripId: string;
