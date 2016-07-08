@@ -1,16 +1,18 @@
 var http = require('http');
 var scheduler = require('node-schedule');
 var OneBusAwayFactory = require('./factories/OneBusAwayFactory');
+var TwilioFactory = require('./factories/TwilioFactory');
 // Logging message that app started properly.
 console.log('>>> App is running...');
 // Immediate block of action for development purposes.
-OneBusAwayFactory.getTripETA().then(function (response) {
-    if (!response) {
+OneBusAwayFactory.getTripETA().then(function (busData) {
+    if (!busData) {
         console.log('>>> No incoming 232 was located.');
     }
     else {
-        console.log('>>> Milliseconds to arrival: ' + response.msToArrival);
-        console.log('>>> Predicted time: ' + response.isPredicted);
+        console.log('>>> Milliseconds to arrival: ' + busData.msToArrival);
+        console.log('>>> Predicted time: ' + busData.isPredicted);
+        TwilioFactory.sendSmsMessage(busData);
     }
 });
 // Rule to run action at 7:10 AM PST.

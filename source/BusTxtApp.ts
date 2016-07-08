@@ -1,18 +1,20 @@
 import http = require('http');
 import scheduler = require('node-schedule');
 import OneBusAwayFactory = require('./factories/OneBusAwayFactory');
+import TwilioFactory = require('./factories/TwilioFactory');
 import { IArrivalTimeResponse } from './models/IArrivalTimeResponse';
 
 // Logging message that app started properly.
 console.log('>>> App is running...');
 
 // Immediate block of action for development purposes.
-OneBusAwayFactory.getTripETA().then(function (response: IArrivalTimeResponse) {
-  if (!response) {
+OneBusAwayFactory.getTripETA().then(function (busData: IArrivalTimeResponse) {
+  if (!busData) {
       console.log('>>> No incoming 232 was located.');
   } else {
-    console.log('>>> Milliseconds to arrival: ' + response.msToArrival);
-    console.log('>>> Predicted time: ' + response.isPredicted);
+    console.log('>>> Milliseconds to arrival: ' + busData.msToArrival);
+    console.log('>>> Predicted time: ' + busData.isPredicted);
+    TwilioFactory.sendSmsMessage(busData);
   }
 });
 
