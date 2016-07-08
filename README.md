@@ -1,5 +1,5 @@
-# TypeScript Node seed
-> This is a simple seed (which may grow into a sapling) that serves as the roots for a Node application written in TypeScript that can be deployed to Azure.
+# bustxt
+> Simple service to notify my wife via SMS if her bus is late or not so she doesn't have to open an app.
 
 ## Getting started
 * Run `npm install` to install dependencies.
