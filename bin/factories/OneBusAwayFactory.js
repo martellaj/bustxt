@@ -28,7 +28,8 @@ function getTripETA() {
                     // Return ETA based on prediction, if available.
                     var response_1 = {
                         msToArrival: _body.data.entry.predictedArrivalTime - _body.currentTime,
-                        isPredicted: true
+                        isPredicted: true,
+                        arrivalDateTime: _body.data.entry.predictedArrivalTime
                     };
                     deferred.resolve(response_1);
                 }
@@ -36,7 +37,8 @@ function getTripETA() {
                     // Return ETA based on schedule, if prediction isn't vailable.
                     var response_2 = {
                         msToArrival: _body.data.entry.scheduledArrivalTime - _body.currentTime,
-                        isPredicted: false
+                        isPredicted: false,
+                        arrivalDateTime: _body.data.entry.scheduledArrivalTime
                     };
                     deferred.resolve(response_2);
                 }
