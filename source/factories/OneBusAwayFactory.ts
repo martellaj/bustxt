@@ -46,7 +46,8 @@ export function getTripETA() {
           // Return ETA based on prediction, if available.
           let response: IArrivalTimeResponse = {
             msToArrival: _body.data.entry.predictedArrivalTime - _body.currentTime,
-            isPredicted: true
+            isPredicted: true,
+            arrivalDateTime: _body.data.entry.predictedArrivalTime
           };
 
           deferred.resolve(response);
@@ -54,7 +55,8 @@ export function getTripETA() {
           // Return ETA based on schedule, if prediction isn't vailable.
           let response: IArrivalTimeResponse = {
             msToArrival: _body.data.entry.scheduledArrivalTime - _body.currentTime,
-            isPredicted: false
+            isPredicted: false,
+            arrivalDateTime: _body.data.entry.scheduledArrivalTime
           };
 
           deferred.resolve(response);
