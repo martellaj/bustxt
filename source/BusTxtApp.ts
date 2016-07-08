@@ -10,7 +10,7 @@ console.log('>>> App is running...');
 // Immediate block of action for development purposes.
 OneBusAwayFactory.getTripETA().then(function (busData: IArrivalTimeResponse) {
   if (!busData) {
-      console.log('>>> No incoming 232 was located.');
+    console.log('>>> No incoming 232 was located.');
   } else {
     console.log('>>> Milliseconds to arrival: ' + busData.msToArrival);
     console.log('>>> Predicted time: ' + busData.isPredicted);
