@@ -8,18 +8,21 @@ import { IArrivalTimeResponse } from './models/IArrivalTimeResponse';
 console.log('>>> App is running...');
 
 // Immediate block of action for development purposes.
-OneBusAwayFactory.getTripETA().then(function (busData: IArrivalTimeResponse) {
-  if (!busData) {
-    console.log('>>> No incoming 232 was located.');
-  } else {
-    console.log('>>> Milliseconds to arrival: ' + busData.msToArrival);
-    console.log('>>> Predicted time: ' + busData.isPredicted);
-    TwilioFactory.sendSmsMessage(busData);
-  }
-});
+let debugging = false;
+if (debugging) {
+  OneBusAwayFactory.getTripETA().then(function (busData: IArrivalTimeResponse) {
+    if (!busData) {
+      console.log('>>> No incoming 232 was located.');
+    } else {
+      console.log('>>> Milliseconds to arrival: ' + busData.msToArrival);
+      console.log('>>> Predicted time: ' + busData.isPredicted);
+      TwilioFactory.sendSmsMessage(busData);
+    }
+  });
+}
 
 // Rule to run action at 7:10 AM PST.
-let rule: scheduler.RecurrenceRule = new scheduler.RecurrenceRule(null, null, null, null, 14, 10, null);
+let rule: scheduler.RecurrenceRule = new scheduler.RecurrenceRule(null, null, null, [1, 2, 3, 4, 5], 14, 10, null);
 scheduler.scheduleJob(rule, function () {
   console.log('>>> Getting bus schedule...');
   OneBusAwayFactory.getTripETA().then(function (response: IArrivalTimeResponse) {
