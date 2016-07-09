@@ -1,5 +1,6 @@
 var Config = require('../config');
 var moment = require('moment-timezone');
+var winston = require('winston');
 var twilio = require('twilio');
 var client = twilio(Config.TWILIO_ACCOUNT_SID, Config.TWILIO_API_KEY);
 function sendSmsMessage(busData) {
@@ -10,24 +11,24 @@ function sendSmsMessage(busData) {
         body: messageBody
     }, function (error, response) {
         if (error) {
-            // TODO: Handle error.
+            // Log error.
+            winston.error(error.message);
             return;
         }
-        // TODO: Log successful SMS sent.
-        console.log('Successfully texted about a bus.');
+        // Log successful SMS sent.
+        winston.info('Successfully texted about a bus.', { minutesToArrival: busData.minutesToArrival });
     });
 }
 exports.sendSmsMessage = sendSmsMessage;
 function formatMessageText(busData) {
     var message = "";
-    var minutesToArrival = Math.round(busData.msToArrival / 60000);
     var arrivalTimePst = moment(busData.arrivalDateTime).tz('America/Los_Angeles').format('h:mma');
     var isPredicted = busData.isPredicted;
     if (isPredicted) {
-        message = "Your bus is " + minutesToArrival + " minutes away. Be at the bus stop by " + arrivalTimePst + "!";
+        message = "Your bus is " + busData.minutesToArrival + " minutes away. Be at the bus stop by " + arrivalTimePst + "!";
     }
     else {
-        message = "Your bus doesn't have tracking info, but based on the schedule, it's " + minutesToArrival + " away. Be at the bus stop by " + arrivalTimePst + "!";
+        message = "Your bus doesn't have tracking info, but based on the schedule, it's " + busData.minutesToArrival + " minutes away. Be at the bus stop by " + arrivalTimePst + "!";
     }
     return message;
 }

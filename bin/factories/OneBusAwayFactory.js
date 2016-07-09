@@ -25,18 +25,22 @@ function getTripETA() {
             var _body = JSON.parse(body);
             if (_body.code === 200) {
                 if (trip.predictedArrivalTime > 0) {
+                    var msToArrival = _body.data.entry.predictedArrivalTime - _body.currentTime;
                     // Return ETA based on prediction, if available.
                     var response_1 = {
-                        msToArrival: _body.data.entry.predictedArrivalTime - _body.currentTime,
+                        msToArrival: msToArrival,
+                        minutesToArrival: Math.round(msToArrival / 60000),
                         isPredicted: true,
                         arrivalDateTime: _body.data.entry.predictedArrivalTime
                     };
                     deferred.resolve(response_1);
                 }
                 else {
+                    var msToArrival = _body.data.entry.scheduledArrivalTime - _body.currentTime;
                     // Return ETA based on schedule, if prediction isn't vailable.
                     var response_2 = {
-                        msToArrival: _body.data.entry.scheduledArrivalTime - _body.currentTime,
+                        msToArrival: msToArrival,
+                        minutesToArrival: Math.round(msToArrival / 60000),
                         isPredicted: false,
                         arrivalDateTime: _body.data.entry.scheduledArrivalTime
                     };
