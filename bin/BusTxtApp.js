@@ -7,7 +7,7 @@ var winston = require('winston');
 winston.add(winston.transports.File, { filename: 'bustxt.log' });
 winston.info('Application has started running.');
 // Immediate block of action for development purposes.
-var debugging = true;
+var debugging = false;
 if (debugging) {
     OneBusAwayFactory.getTripETA().then(function (busData) {
         if (!busData) {
