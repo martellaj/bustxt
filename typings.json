@@ -9,6 +9,7 @@
   "globalDependencies": {
     "moment-timezone": "registry:dt/moment-timezone#0.2.5+20160329220348",
     "node-schedule": "registry:dt/node-schedule#1.1.0+20160521153413",
-    "q": "registry:dt/q#0.0.0+20160613154756"
+    "q": "registry:dt/q#0.0.0+20160613154756",
+    "winston": "registry:dt/winston#0.0.0+20160417152829"
   }
 }

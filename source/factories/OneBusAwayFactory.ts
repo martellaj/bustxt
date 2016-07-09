@@ -43,18 +43,24 @@ export function getTripETA() {
 
       if (_body.code === 200) {
         if (trip.predictedArrivalTime > 0) {
+          let msToArrival: number = _body.data.entry.predictedArrivalTime - _body.currentTime;
+
           // Return ETA based on prediction, if available.
           let response: IArrivalTimeResponse = {
-            msToArrival: _body.data.entry.predictedArrivalTime - _body.currentTime,
+            msToArrival: msToArrival,
+            minutesToArrival: Math.round(msToArrival / 60000),
             isPredicted: true,
             arrivalDateTime: _body.data.entry.predictedArrivalTime
           };
 
           deferred.resolve(response);
         } else {
+          let msToArrival: number = _body.data.entry.scheduledArrivalTime - _body.currentTime;
+
           // Return ETA based on schedule, if prediction isn't vailable.
           let response: IArrivalTimeResponse = {
-            msToArrival: _body.data.entry.scheduledArrivalTime - _body.currentTime,
+            msToArrival: msToArrival,
+            minutesToArrival: Math.round(msToArrival / 60000),
             isPredicted: false,
             arrivalDateTime: _body.data.entry.scheduledArrivalTime
           };
