@@ -1,17 +1,19 @@
 # bustxt
+
 > Simple service to notify my wife via SMS if her bus is late or not so she doesn't have to open an app.
 
-## Getting started
+![](https://raw.githubusercontent.com/martellaj/bustxt/master/bustxt.gif)
+
+## Development
 * Run `npm install` to install dependencies.
 * Run `typings install` to install typings for development.
+* Run the build task in *.vscode/tasks.json* to do continuous TypeScript to JavaScript compilation.
+* Edit code in the *source/* directory, and leave the code in *bin/* untouched.
+* To get access to logs, connect to the FTP location which can be found in **Settings > Properties** of the Azure portal.
 
-## TypeScript
-* During development, run the build task (specified in *.vscode/tasks.json*) in VS Code. This will run the *tsc* tool continuously, watching for any code changes and immediately compiling new JavaScript.
-* Compilation options are specified in *tsconfig.json*.
-* TypeScript code (which you should edit) can be found in the *source/* directory.
-* Compiled JavaScript code (which you shouldn't edit) gets placed in a *bin/* directory.
+## Acknowledgements
+* [twilio-node](https://twilio.github.io/twilio-node/) - Makes sending SMS messages programmatically simple as pie.
+* [OneBusAway API](http://pugetsound.onebusaway.org/p/OneBusAwayApiService.action) - Provides real-time public transportation data reliably.
 
-## Azure
-* The *web.config* file is specific to this application's structure. If at any time the structure of *bin/* changes, it'll need to be updated to correctly point to *server.js*.
-* Located in this seed is a *IISNode.yml* file, which Azure reads for instructions. This line, `loggingEnabled: true`, captures any console logging the application does and writes it to logs available through FTP.
-* To get the FTP location, go to **Settings > Properties** in the Azure portal. Application logs can be found in *LogFiles/Application*.
+## License
+MIT © [Joe Martella](http://www.martellaj.github.io)
