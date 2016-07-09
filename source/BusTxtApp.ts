@@ -21,7 +21,7 @@ if (debugging) {
   });
 }
 
-// Rule to run action at 7:10 AM PST.
+// Rule to run action at 7:10 AM PST, Monday through Friday.
 let rule: scheduler.RecurrenceRule = new scheduler.RecurrenceRule(null, null, null, [1, 2, 3, 4, 5], 14, 10, null);
 scheduler.scheduleJob(rule, function () {
   console.log('>>> Getting bus schedule...');
