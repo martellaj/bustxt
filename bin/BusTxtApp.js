@@ -17,6 +17,23 @@ if (debugging) {
             winston.info('Minutes to 232 arrival: ' + busData.minutesToArrival);
             winston.info('Arrival time predicted: ' + busData.isPredicted);
             TwilioFactory.sendSmsMessage(busData);
+            // Try again in 5 minutes if no real-time data came in.
+            if (!busData.isPredicted) {
+                winston.info('No real-time data found. Will try again in 5 minutes.');
+                setTimeout(function () {
+                    winston.info('Trying to find real-time data.');
+                    OneBusAwayFactory.getTripETA().then(function (busData) {
+                        if (!busData) {
+                            winston.warn('No incoming 232 bus was found.');
+                        }
+                        else {
+                            winston.info('Minutes to 232 arrival: ' + busData.minutesToArrival);
+                            winston.info('Arrival time predicted: ' + busData.isPredicted);
+                            TwilioFactory.sendSmsMessage(busData);
+                        }
+                    });
+                }, 300000 /* 5 minutes */);
+            }
         }
     });
 }
@@ -32,6 +49,23 @@ scheduler.scheduleJob(rule, function () {
             winston.info('Minutes to 232 arrival: ' + busData.minutesToArrival);
             winston.info('Arrival time predicted: ' + busData.isPredicted);
             TwilioFactory.sendSmsMessage(busData);
+            // Try again in 5 minutes if no real-time data came in.
+            if (!busData.isPredicted) {
+                winston.info('No real-time data found. Will try again in 5 minutes.');
+                setTimeout(function () {
+                    winston.info('Trying to find real-time data.');
+                    OneBusAwayFactory.getTripETA().then(function (busData) {
+                        if (!busData) {
+                            winston.warn('No incoming 232 bus was found.');
+                        }
+                        else {
+                            winston.info('Minutes to 232 arrival: ' + busData.minutesToArrival);
+                            winston.info('Arrival time predicted: ' + busData.isPredicted);
+                            TwilioFactory.sendSmsMessage(busData);
+                        }
+                    });
+                }, 300000 /* 5 minutes */);
+            }
         }
     });
 });
