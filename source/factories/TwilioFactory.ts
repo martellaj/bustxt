@@ -21,7 +21,7 @@ export function sendSmsMessage (busData: IArrivalTimeResponse) {
     }
 
     // Log successful SMS sent.
-    winston.info('Successfully texted about a bus.', { minutesToArrival: busData.minutesToArrival });
+    winston.info('Successfully texted about a bus.', { minutesToArrival: busData.minutesToArrival, isPredicted: busData.isPredicted });
   });
 }
 
